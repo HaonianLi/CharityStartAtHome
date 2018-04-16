@@ -1,0 +1,121 @@
+﻿<!DOCTYPE html>
+<style>
+  
+</style>
+
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Modern Business - @ViewBag.Title</title>
+
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jqueryui")
+    @*@Styles.Render("~/Content/themes/base/css", "~/Content/css")*@
+    <!-- Bootstrap -->
+    <link href="@Url.Content("/Content/bootstrap.css")" rel="stylesheet">
+    <link href="@Url.Content("/Content/bootstrap.min.css")" rel="stylesheet">
+    <link href="@Url.Content("/Content/modern-business.css")" rel="stylesheet">
+    <link href="@Url.Content("/Content/style.css")" rel="stylesheet" type="text/css" media="all">
+
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body>
+    <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <!-- You'll want to use a responsive image option so this logo looks good on devices - I recommend using something like retina.js (do a quick Google search for it and you'll find it) -->
+                @Html.ActionLink("Do Your Bit", "Index", new { controller = "Home" }, new { @class = "navbar-brand" })
+            </div>
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
+                        <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="#">
+                        <img src="img/logo.png" alt="" />
+                    </a>
+                </div>
+                <div class="collapse navbar-collapse hidden-xs">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li id="Homepage" class="@(ViewContext.RouteData.Values["Action"].ToString() == "Index" ? "active" : "")">@Html.ActionLink("Home", "Index", "Home")</li>
+
+                        <li id="About" class="@(ViewContext.RouteData.Values["Action"].ToString() == "About" ? "active" : "")">@Html.ActionLink("About us", "About", "Home")</li>
+
+                        @*<li id="About" class="@(ViewContext.RouteData.Values["Action"].ToString() == "About" ? "active" : "")">@Html.ActionLink("Donate time", "Index", "Viccharities")</li>*@
+
+                        <li id="other" class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">What you can do <b class="caret"></b></a>
+                            <ul class="dropdown-menu">
+                                <li id="cloth" class="@(ViewContext.RouteData.Values["Action"].ToString() == "Clothm" ? "active" : "")">@Html.ActionLink("Donate clothes", "Clothm", "Clothes")</li>
+
+                                <li id="time" class="@(ViewContext.RouteData.Values["Action"].ToString() == "Time" ? "active" : "")">@Html.ActionLink("Donate time", "Time", "Viccharities")</li>
+                             
+
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+               
+            </div>
+        </div>
+    </nav>
+
+
+    @RenderBody()
+
+    <div class="container">
+
+        <hr>
+
+        <footer>
+            <div class="row">
+                <div class="col-lg-12">
+                    <p>Copyright &copy; Company 2013</p>
+                </div>
+            </div>
+        </footer>
+
+    </div>
+    <!-- /.container -->
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script src="@Url.Content("/js/bootstrap.js")"></script>
+    <script src="@Url.Content("/js/modern-business.js")"></script>
+    <script src="@Url.Content("/js/jquery.min.js")"></script>
+    <script src="@Url.Content("/js/bootstrap.min.js")"></script>
+    
+
+        <script>
+            /* When the user clicks on the button,
+            toggle between hiding and showing the dropdown content */
+            function myFunction() {
+                document.getElementById("myDropdown").classList.toggle("show");
+            }
+
+        // Close the dropdown if the user clicks outside of it
+        window.onclick = function (e) {
+            if (!e.target.matches('.dropbtn')) {
+                var myDropdown = document.getElementById("myDropdown");
+                if (myDropdown.classList.contains('show')) {
+                myDropdown.classList.remove('show');
+                }
+            }
+        }
+    </script>
+</body>
+</html>

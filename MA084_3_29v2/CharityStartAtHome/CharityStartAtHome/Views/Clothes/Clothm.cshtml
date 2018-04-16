@@ -1,0 +1,127 @@
+﻿@model IEnumerable<CharityStartAtHome.Models.Cloth>
+
+@{
+    ViewBag.Title = "Index";
+    //Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style>
+.container {
+    position: relative;
+    text-align: center;
+    color: white;
+    
+}
+
+.bottom-left {
+    position: absolute;
+    bottom: 8px;
+    left: 16px;
+}
+
+.top-left {
+    position: absolute;
+    top: 8px;
+    left: 16px;
+}
+
+.top-right {
+    position: absolute;
+    top: 8px;
+    right: 16px;
+}
+
+.bottom-right {
+    position: absolute;
+    bottom: 8px;
+    right: 16px;
+}
+
+.centered {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+    h1 {
+        font-family: "Arial Black", Gadget, sans-serif;
+        color: #2aaf8e;
+        font-size: 50px;
+    }
+
+    h2 {
+        font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+        color: #2aaf8e;
+        font-size: 30px;
+    }
+
+    p {
+        font-family: 'Arial Unicode MS';
+        font-size: 20px;
+    }
+    img {
+       height:500px;
+    }
+    #img_container {
+        position: relative;
+        display: inline-block;
+        text-align: center;
+      
+    }
+
+    button {
+      
+        position: absolute;
+        bottom: 30px;
+        right: 30px;
+        width: 120px;
+        height: 100px;
+        border-radius: 50%;
+    }
+    /*button {
+        background-color: white;
+        color: black;
+        border: 2px solid #008CBA;
+    }
+        */
+        /*button:hover {
+            background-color:paleturquoise;
+            color:black;
+            font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;*/
+        
+</style>
+
+
+<ul class="breadcrumb" style="margin-top:50px">
+    Your are here:
+    <li>@Html.ActionLink("Home", "Index", "Home")</li>
+    <li style="color:black">What you can help</li>
+    <li style="color:black">Donate clothes</li>
+</ul>
+
+    <div id="img_container">
+        <img src="~/Images/Charity2.jpg" alt="Norway" style="width:100%;">
+        @*<button>@Html.ActionLink("Find Place to give clothes", "Index", "Clothes")</button>*@
+    </div> 
+    <br />
+   <div class="text-center">
+    <div>
+        <h1>Be a cause of someone’s happiness. Donate your old clothes.</h1>
+    </div>
+        <div>
+            <p>Donating your old clothes is one of the simplest ways of giving to charity without parting with cash, which not only fosters good connections, </p>
+            <p>provide someone else with a chance to feel good about themselves.</p>
+        </div>
+        <div>
+        <h2>What to donate?</h2> 
+        <p>Launder dirty or soiled clothing first, and even fix clothes in bad condition such as torn items, buttons missing, broken zippers, etc. before donating.</p> 
+         <p>Make sure it can be given away or resold. </p>
+   </div>
+        <div>
+            <h2>Don't donate trash!</h2>
+            <p> Disposing of poor quality or ruined items can cost charities tens of thousands of dollars each year. It’s not helping at all.</p>
+        </div>
+        </div>
+
+
+        <div class="text-center">@Html.ActionLink("Donate now", "List", "Clothes", new { @class = "btn btn-success btn-lg" })</div>
+       

@@ -1,0 +1,353 @@
+﻿@*@model IEnumerable<CharityStartAtHome.Models.Cloth>*@
+@model PagedList.IPagedList<CharityStartAtHome.Models.Cloth>
+@*@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}*@
+@using PagedList.Mvc;
+<style>
+
+
+    h1 {
+        font-family: "Arial Black", Gadget, sans-serif;
+        color: #2aaf8e;
+        font-size: 50px;
+    }
+
+    h2 {
+        font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+        color: #2aaf8e;
+        font-size: 30px;
+    }
+
+    p {
+        font-family: 'Arial Unicode MS';
+        font-size: 20px;
+    }
+
+
+    ul.pagination {
+        margin: 0;
+    }
+
+    .pagination li {
+        list-style-type: none;
+        float: left;
+        min-width: 15px;
+    }
+
+
+    /*.btn-search {
+         background: #424242;
+         border-radius: 0;
+         color: #fff;
+         border-width: 1px;
+         border-style: solid;
+         border-color: #1c1c1c;
+     }
+
+         .btn-search:link, .btn-search:visited {
+             color: #fff;
+         }
+
+         .btn-search:active, .btn-search:hover {
+             background: #1c1c1c;
+             color: #fff;
+         }*/
+
+    input[type=number] {
+        padding-right: 100px;
+        width: 800px !important;
+    }
+
+    input[type=number] {
+        width: 800px;
+        box-sizing: border-box;
+        border: 2px solid #ccc;
+        border-radius: 4px;
+        font-size: 16px;
+        background-color: white;
+        background-image: url('searchicon.png');
+        background-position: 10px 10px;
+        background-repeat: no-repeat;
+        padding: 12px 20px 12px 40px;
+        -webkit-transition: width 0.4s ease-in-out;
+        transition: width 0.4s ease-in-out;
+    }
+
+    input[type=text]:focus {
+        width: 300%;
+    }
+
+    /*div {
+         margin-bottom: 10px;
+     }*/
+    /*input:invalid + span:after {
+         content: '✖';
+         padding-left: 5px;
+     }
+
+     input:valid + span:after {
+         content: '✓';
+         padding-left: 5px;
+     }*/
+
+
+    ul.breadcrumb {
+        padding: 8px 16px;
+        list-style: none;
+        background-color: #eee;
+    }
+
+        ul.breadcrumb li {
+            display: inline;
+        }
+
+            ul.breadcrumb li + li:before {
+                padding: 8px;
+                color: black;
+                content: "/\00a0";
+            }
+
+            /*ul.breadcrumb li a {
+                color: green;
+            }*/
+
+
+
+</style>
+<html>
+
+<body>
+
+   
+    <ul class="breadcrumb" style="margin-top:50px">
+        Your are here:
+        <li>@Html.ActionLink("Home", "Index", "Home")</li>
+        <li>@Html.ActionLink("What you can help", "Index", "Home")</li>
+        <li>@Html.ActionLink("Donate clothes", "Clothm", "Clothes")</li>
+        <li style="color:black">Find nearby places</li>
+    </ul>
+    <h1 style="margin-left:20px">Find nearby places</h1>
+    @using (Html.BeginForm())
+    {
+
+
+        @*<b > Search Option: </b>@Html.RadioButton("option", "Name")
+    <text>Name</text> @Html.RadioButton("option", "Gender") 
+        <text>Gender</text>@Html.RadioButton("option", "Subjects")<text>Subject</text>*@
+
+
+        <div class="row" id="inputGroup" style="padding-left:40px">
+            <p>
+                <input type="number" maxlength="4" style="width:100%" name="SearchString" placeholder="Search by Postcode..">
+                @*Find by name: @Html.TextBox("SearchString")*@
+               
+            <button class="btn btn-success btn-lg" value="Search" > Search</button>
+            
+        </p>
+
+            </div>
+            <div>
+                <br />
+                <p id="demo" style="color:red"></p>
+                </div>
+    }
+     @*<p>@Html.ActionLink("Create New", "Create")</p>*@
+
+    @*<select id="mySelect" class="btn-success btn-lg" style="display:none">
+        <option value="1"> PostCode*@
+        @*<option value="2">Address*@
+
+    @*</select>
+
+    <div class="row" id="inputGroup" style="padding-left:40px">
+     
+        <input id="myInput2" type="number" maxlength="4" style="width:600px" name="q" placeholder="Search by Postcode..">
+        <br />
+        <p id="demo" style="color:red"></p>
+        <button class="btn btn-success btn-lg" type="button" onclick="checkNumber()" onkeydown="onKeyDown(event)"><i class="fa fa-search fa-fw"></i> Search</button>
+        <button class="btn btn-success btn-lg" type="button" onclick="showAll()"><i class="fa fa-search fa-fw"></i> List All</button>
+    </div>*@
+
+
+
+
+    <ul @*class="list-group collapse"*@ id="myUL" style="margin-right:50px">
+        @foreach (var item in Model)
+        {
+            <li>
+                <div class="row">
+
+                    <a href="#" class="list-group-item flex-column">
+
+                        <h2>@Html.DisplayFor(modelItem => item.Name)</h2>
+
+                        <p>
+                            @Html.DisplayFor(modelItem => item.Suburb)
+                            @Html.DisplayFor(modelItem => item.Address)
+                        </p>
+                        Post Code:
+                        <p>@Html.DisplayFor(modelItem => item.Postcode)</p>
+                        Contact number:
+                        <p>
+                            @Html.DisplayFor(modelItem => item.Phone)
+                        </p>
+                    </a>
+
+                    <div>@Html.ActionLink("Find more!", "Details", new { id = item.Id }, new { @class = "btn btn-success btn-lg" })</div>
+                    <div>@Html.ActionLink("Cafe near by", "Cafepos", new { id = item.Id }, new { @class = "btn btn-success btn-lg" })</div>
+                </div>
+            </li>
+
+        }
+      
+    </ul>
+    <div class="text-center">
+    Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+
+    @Html.PagedListPager(Model, page => Url.Action("List",
+    new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
+   
+        </div>
+    <div class="text-center" style="width:100%">
+    <p id="result" style="font-size:12px; color:black" class="center"></p>
+        </div>
+   
+
+ @*@Html.PagedListPager((IPagedList)Model, page => Url.Action("Index", new { page }), Bootstrap4PagedListRenderOptions.ClassicPlusFirstAndLast)*@
+    <script>
+        function myFunction()
+        {
+            var input, filter, ul, li, a, p, i, text ,j;
+            input = document.getElementById('myInput2');
+            filter = input.value.toUpperCase();
+            ul = document.getElementById("myUL");
+            li = ul.getElementsByTagName('li');
+            j = 0;
+            // Loop through all list items, and hide those who don't match the search query
+            for (i = 0; i < li.length; i++) {
+                a = li[i].getElementsByTagName('a');         
+                p = a[0].getElementsByTagName('p')[1];
+                if (p.innerHTML.toUpperCase().indexOf(filter) > -1) {
+                    //      a[j].style.display = "";
+                    j++;
+                    $("#myUL").show();
+                    li[i].style.display = "";
+                   
+                    
+                } else {
+                    //   a[j].style.display = "none";
+                    li[i].style.display = "none";
+                    
+                }
+            }
+            text = "There are " + j + " results found";
+            document.getElementById("result").innerHTML = text;
+        }
+
+        function showAll() {
+            // Declare variables
+            var input, filter, ul, li, a, p, i;
+            ul = document.getElementById("myUL");
+            //ul.remove();
+            li = ul.getElementsByTagName('li');
+
+            // Loop through all list items, and hide those who don't match the search query
+            for (i = 0; i < li.length; i++) {
+                a = li[i].getElementsByTagName('a');
+                    li[i].style.display = "";
+
+                } 
+            
+            $("#myUL").show();
+            var count = $("#myUL").children().children().length;
+           
+            text = "There are " + count + " results found";
+
+                document.getElementById("result").innerHTML = text;
+           
+        }
+
+        function myFunction2() {
+            // Declare variables
+            var input, filter, ul, li, a, p, i, text;
+            input = document.getElementById('myInput2');
+            filter = input.value.toUpperCase();
+            ul = document.getElementById("myUL");
+            li = ul.getElementsByTagName('li');
+
+            // Loop through all list items, and hide those who don't match the search query
+            for (i = 0; i < li.length; i++) {
+                a = li[i].getElementsByTagName('a');
+
+                p = a[0].getElementsByTagName('p')[0];
+                if (p.innerHTML.toUpperCase().indexOf(filter) > -1) {
+                    //      a[j].style.display = "";
+                    li[i].style.display = "";
+
+                } else {
+                    //   a[j].style.display = "none";
+                    li[i].style.display = "none";
+                    text = "There is not correct one!"
+                    document.getElementById("result").innerHTML = text;
+                }
+            }
+           
+        }
+
+
+        $('#myInput2').keypress(function (e) {
+
+            if (e.which == '13') {
+                checkNumber();
+            }
+        });
+
+
+        function checkNumber() {
+            var x, text;
+
+            // Get the value of the input field with id="numb"
+            x = document.getElementById("myInput2").value;
+
+            // If x is Not a Number or less than one or greater than 10
+            if (isNaN(x)) {
+                text = "Error:Input must not be null";
+            }
+          
+
+            else if (x.length > 4 || x.length < 4) {
+                text = "Error:Input must be 4 digits";
+            }
+       
+            else if (x == 1234)
+            {
+                text = "Error:Input invailded with no post code is 1234 ";
+            }
+            else if (!(x.startsWith("3")))
+            {
+                text = "Error:Input must be start with number 3 ";
+            }
+            
+            else {
+                text = null;
+                var x = document.getElementById("mySelect").value;
+                if (x == '1') {
+                    myFunction();
+                }
+                if (x == '2') {
+                    myFunction2();
+
+                }
+            }
+            document.getElementById("demo").innerHTML = text;
+        }
+
+    </script>
+
+</body>
+
+</html>
+
+
